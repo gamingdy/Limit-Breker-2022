@@ -28,7 +28,7 @@
         </div>
         <div>
 			{% if connected %}
-      <a href="{{ url_for('profil') }}">Profile</a>
+      <a href="{{ url_for('profil') }}">Profil</a>
 			{% else %}
       <a href="{{ url_for('login') }}">Connexion/inscription</a>
 				
@@ -71,5 +71,5 @@
     </footer>
     
   </body>
-
+  {% block script %}{% endblock %}
 </html>    
