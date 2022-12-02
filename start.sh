@@ -11,6 +11,7 @@ echo \
 
 sudo apt update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo service docker restart
 
 sudo docker build -t limit-breaker .
 sudo docker-compose up -d
