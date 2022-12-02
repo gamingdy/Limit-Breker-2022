@@ -313,6 +313,9 @@ h1 {
 h3 {
     padding-left: 2%;
 }
+.centrer_register{
+    align-items: center;
+}
 
 
 /* Ne pas toucher - CSS Cartes */
