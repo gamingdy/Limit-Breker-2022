@@ -71,6 +71,7 @@ def pendu():
     return render_template("games_folder/pendu.html")
 
 
+
 @app.route("/register/", methods=["GET", "POST"])
 def register():
     # Output message if something goes wrong...
