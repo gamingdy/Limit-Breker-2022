@@ -3,7 +3,15 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-  <h1>Index</h1>
-  <p class="important">
-    Welcome on my awesome homepage.
+  <h1>Votre profil</h1>
+  <div class="user-stats">
+    <div class="centrer_register">
+    <div class="photoprofil"><img src="{{user.pp}}" alt=""></div>
+    <p>{{user.username}}</p>
+    <div class="user_level">
+      <label for="currentlvl">Level {{user.level.lvl}}</label>
+      <progress max="{{user.level.bar}}" value="{{user.level.lvl}}"></progress>
+    </div>
+  </div>
+  </div>
 {% endblock %}
