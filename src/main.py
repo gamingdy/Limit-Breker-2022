@@ -37,26 +37,6 @@ def index():
 	return render_template("index.html", connected=False)
 
 
-@app.route("/contact")
-def contact():
-	if is_logged():
-		return render_template("contact.html", connected=True)
-	return render_template("contact.html", connected=False)
-
-
-@app.route("/temoignage")
-def temoignage():
-	if is_logged():
-		return render_template("info_folder/temoignages.html", connected=True)
-	return render_template("info_folder/temoignages.html", connected=False)
-
-
-@app.route("/games")
-def games():
-	if is_logged():
-		return render_template("games.html", connected=True)
-	return render_template("games.html", connected=False)
-
 
 @app.route("/prejuge")
 def prejuge():
@@ -111,6 +91,13 @@ def profil():
 @app.route("/quizz/")
 def quizz():
     return render_template("games_folder/quizz.html")
+
+@app.route("/pendu")
+def pendu():
+	if is_logged():
+		return render_template("games_folder/pendu.html", connected=True)
+	return render_template("games_folder/pendu.html", connected=False)
+
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -210,16 +197,13 @@ def logout():
 
 
 @app.route("/games/")
-def game():
+def games():
     
     if is_logged():
-        user = {
-            "username": session["username"],
-            "pp": "",
-            "level": {"bar": 7, "lvl": 1},
-        }
-        return render_template("games_folder/index.html", user=user)
+        user = user_data()
+        return render_template("games_folder/index.html",connected=True, user=user)
     return redirect(url_for("login"))
+
 
 
 app.run(host="0.0.0.0", debug=True)
