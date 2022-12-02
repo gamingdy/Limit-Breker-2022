@@ -16,61 +16,99 @@ def get_db():
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
+def is_logged():
+    return session.get("loggedin", None)
+
+
+def user_data():
+    user = {"username": session["username"]}
+    print(session["username"])
+    database = get_db()
+    cursor = database.cursor()
+    user_data = cursor.execute("SELECT pp,level FROM users WHERE username = ?", (session["username"],)).fetchall()[0]
+    user["pp"] = user_data[0]
+    user["level"] = {"bar":7,"lvl":user_data[1]}
+    return user
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+	if is_logged():
+		return render_template("index.html", connected=True)
+	return render_template("index.html", connected=False)
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+	if is_logged():
+		return render_template("contact.html", connected=True)
+	return render_template("contact.html", connected=False)
 
 
 @app.route("/temoignage")
 def temoignage():
-    return render_template("info_folder/temoignages.html")
+	if is_logged():
+		return render_template("info_folder/temoignages.html", connected=True)
+	return render_template("info_folder/temoignages.html", connected=False)
 
 
 @app.route("/games")
 def games():
-    return render_template("games.html")
+	if is_logged():
+		return render_template("games.html", connected=True)
+	return render_template("games.html", connected=False)
 
 
 @app.route("/prejuge")
 def prejuge():
-    return render_template("info_folder/prejuge.html")
-
+	if is_logged():
+		return render_template("info_folder/prejuge.html", connected=True)
+	return render_template("info_folder/prejuge.html", connected=False)
 
 @app.route("/info")
 def info():
-    return render_template("info_folder/info.html")
+	if is_logged():
+		return render_template("info_folder/info.html", connected=True)
+	return render_template("info_folder/info.html", connected=False)
+	
 
 
 @app.route("/contraception")
 def contraception():
-    return render_template("info_folder/contraception.html")
+	if is_logged():
+		return render_template("info_folder/contraception.html", connected=True)
+	return render_template("info_folder/contraception.html", connected=False)
 
 
 @app.route("/ist")
 def ist():
-    return render_template("info_folder/ist.html")
+	if is_logged():
+		return render_template("info_folder/ist.html", connected=True)
+	return render_template("info_folder/ist.html", connected=False)
 
 
 @app.route("/sis")
 def sis():
-    return render_template("info_folder/presentation_sis.html")
+	if is_logged():
+		return render_template("info_folder/presentation_sis.html", connected=True)
+	return render_template("info_folder/presentation_sis.html", connected=False)
 
 
-@app.route("/cartes")
+@app.route("/games/cartes/")
 def cartes():
-    return render_template("games_folder/cartes.html")
+	if is_logged():
+		return render_template("games_folder/cartes.html", connected=True)
+	return render_template("games_folder/cartes.html", connected=False)
 
-# @app.route("/info")
-# def info():
-#     return render_template("info_folder/info.html")
+@app.route("/profil/")
+def profil():
+    if is_logged():
+        user = user_data()
+        
+        return render_template("user/profil.html", user=user)
+    
+    return redirect(url_for("login"))
 
-@app.route("/quizz")
+@app.route("/quizz/")
 def quizz():
     return render_template("games_folder/quizz.html")
 
@@ -122,7 +160,7 @@ def register():
             )
             database.commit()
             msg = "You have successfully registered!"
-            return redirect(url_for("index"))
+            return redirect(url_for("login"))
 
     return render_template("registration/register.html", msg=msg)
 
@@ -154,7 +192,7 @@ def login():
             # Create session data, we can access this data in other routes
             session["loggedin"] = True
             session["username"] = account[0]
-            return redirect(url_for("index"))
+            return redirect(url_for("profil"))
         else:
             # Account doesnt exist or username/password incorrect
             msg = "Incorrect username or password!"
@@ -173,8 +211,8 @@ def logout():
 
 @app.route("/games/")
 def game():
-    is_logged = session.get("loggedin", None)
-    if is_logged:
+    
+    if is_logged():
         user = {
             "username": session["username"],
             "pp": "",
