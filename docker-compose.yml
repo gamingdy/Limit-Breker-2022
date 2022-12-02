@@ -1,0 +1,8 @@
+version: "3"
+services:
+  limit-breaker:
+    images: limit-breaker
+    container: "limit-breaker-web"
+    ports:
+      - "80:5000"
+
