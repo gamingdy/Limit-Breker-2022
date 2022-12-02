@@ -10,23 +10,25 @@
     <header>
       <nav>
         <div>
-          <a href="games">Jouer</a>
+          <a href="/">Accueil</a>
+        </div>
+        <div>
+          <a href="{{ url_for('games') }}">Jouer</a>
         </div>
         <div class="header_submenu">
           <button class="header_submenu-btn"><a href="info">Infos</a></button>
           <div class="header_submenu-content">
-            <a href="contraception">La contraception</a>
-            <a href="ist">Les IST</a>
-            <a href="prejuge">Les préjugés</a>
-            <a href="temoignage">Des témoignages</a>
-            <a href="sis">SIS Association</a>
+            <a href="info/contraception.html">La contraception</a>
+            <a href="info/ist.html">Les IST</a>
+            <a href="info/prejuge.html">Les préjugés</a>
+            <a href="info/temoignages.html">Des témoignages</a>
           </div>
         </div>
         <div>
-          <a href="contact">Nous contacter</a>
+          <a href="{{ url_for('contact') }}">Nous contacter</a>
         </div>
         <div>
-          <a href="login">Se connecter/S'inscrire</a>
+          <a href="{{ url_for('login') }}">Se connecter/S'inscrire</a>
         </div>
 
       </nav>

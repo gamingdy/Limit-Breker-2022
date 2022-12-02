@@ -61,6 +61,9 @@ def sis():
 def cartes():
     return render_template("games_folder/cartes.html")
 
+# @app.route("/info")
+# def info():
+#     return render_template("info_folder/info.html")
 
 @app.route("/quizz")
 def quizz():
