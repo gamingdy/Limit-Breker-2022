@@ -32,6 +32,11 @@ def temoignage():
     return render_template("info_folder/temoignages.html")
 
 
+@app.route("/games")
+def games():
+    return render_template("games.html")
+
+
 @app.route("/prejuge")
 def prejuge():
     return render_template("info_folder/prejuge.html")
@@ -61,15 +66,13 @@ def sis():
 def cartes():
     return render_template("games_folder/cartes.html")
 
+# @app.route("/info")
+# def info():
+#     return render_template("info_folder/info.html")
 
 @app.route("/quizz")
 def quizz():
     return render_template("games_folder/quizz.html")
-
-@app.route("/pendu")
-def pendu():
-    return render_template("games_folder/pendu.html")
-
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -171,12 +174,14 @@ def logout():
 @app.route("/games/")
 def game():
     is_logged = session.get("loggedin", None)
-    user = {
-        "username": "moi",
-        "pp": "",
-        "level": {"bar": 7, "lvl": 1},
-    }
-    return render_template("games_folder/index.html", user=user)
+    if is_logged:
+        user = {
+            "username": session["username"],
+            "pp": "",
+            "level": {"bar": 7, "lvl": 1},
+        }
+        return render_template("games_folder/index.html", user=user)
+    return redirect(url_for("login"))
 
 
 app.run(host="0.0.0.0", debug=True)

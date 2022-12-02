@@ -9,8 +9,11 @@
   <body>
     <header>
       <nav>
+      	<div>
+      		<a href="{{ url_for('index') }}">Accueil</a>
+      	</div>
         <div>
-          <a href="games">Jouer</a>
+          <a href="{{ url_for('games') }}">Jouer</a>
         </div>
         <div class="header_submenu">
           <button class="header_submenu-btn"><a href="info">Infos</a></button>
