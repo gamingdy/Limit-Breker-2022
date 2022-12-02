@@ -68,19 +68,22 @@ header nav div button {
     border: solid black 1x;
 }
 
-header nav div:nth-child(4) {
+header nav div:nth-child(5){
     border: solid #745190 3px;
     border-radius: 7px;
     padding: 5px;
     background-color: #745190;
 }
 
-header nav div:nth-child(4):hover {
+header nav div:nth-child(5):hover{
     border-color: lightpink;
 }
 
-header nav div a,
-header nav div button {
+header nav div a, header nav div button{
+/*  vertical-align: sub;*/
+    font-size: 30px;
+}
+header nav div a,header nav div button {
     /*  vertical-align: sub;*/
     font-size: 32px;
     font-family: "VT323";
@@ -356,3 +359,20 @@ h3 {
     align-content: center;
 }
 
+.game-list{
+    margin: auto;
+    display:flex;
+    flex-wrap: wrap;
+    max-width: calc(3*(250px + 20px));
+}
+
+.game{
+    margin: 10px;
+    background-color: red;
+    width:250px;
+    height: 100px;
+}
+
+.game-description{
+    display: none;
+}
