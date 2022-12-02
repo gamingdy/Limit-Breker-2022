@@ -68,20 +68,20 @@ header nav div button{
     border: solid black 1x;
 }
 
-header nav div:nth-child(4){
+header nav div:nth-child(5){
     border: solid #745190 3px;
     border-radius: 7px;
     padding: 5px;
     background-color: #745190;
 }
 
-header nav div:nth-child(4):hover{
+header nav div:nth-child(5):hover{
     border-color: lightpink;
 }
 
 header nav div a, header nav div button{
 /*  vertical-align: sub;*/
-    font-size: 32px;
+    font-size: 30px;
     font-family: "VT323";
     color: #EE82EE;
 }
@@ -114,7 +114,7 @@ header nav:hover, .header_submenu:hover .header_submenu{
     position: absolute;
     top: 55px;
 /*  left: 27.2%;*/
-    width: 17.8%;
+    width: 15%;
     height: 25%;
     z-index: 1;
     padding: 1%;
